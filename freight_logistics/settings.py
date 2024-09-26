@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-04klr#d4c^^_)tvl5-7mz3h=mtw$&(=$egr9f2!2#gv6r(ibya
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'sifongo.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'sifongo.up.railway.app', 'www.sifongo.co.tz']
 
 
 # Application definition
