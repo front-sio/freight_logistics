@@ -61,17 +61,24 @@
     .login-userset {
         background-color: #fff;
         padding: 22px;
+        padding-top: 0;
         border-radius: 50px;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
     form {
-        width: 80%;
+        width: 70%;
     }
     label {
         color: #000 !important;
+    }
+
+    .login-logo img{
+        width: 550px !important;
+        height: 180px;
     }
 </style>
 </head>
@@ -84,18 +91,19 @@
             <div class="login-content">
                 <div class="login-userset">
                     <div class="login-logo" style="background-color: #fff !important; border-radius: 10px;">
-                        <img src="{% static 'home/assets/img/logo/logo.png' %}" alt="img">
+                        <img src="{% static 'system/assets/img/sifex/logo.png' %}" alt="img">
                     </div>
-                    <div class="login-userheading">
-                        <h3 class="text-white">Sign In</h3>
-                        <h4 class="text-white">Please login to your account</h4>
-                        {% if messages %}
-                        {% for message in messages %}
-                        <h4 id="messages" class="text-white">{{message}}</h4>
-                        {% endfor %}    
-                        {% endif %}
-                    </div>
+                   
                     <form action="{% url 'login' %}" method="post">
+                        <div class="login-userheading">
+                            <h3 class="text-dark">Sign In</h3>
+                            <h4 class="text-dark">Please login to your account</h4>
+                            {% if messages %}
+                            {% for message in messages %}
+                            <h4 id="messages" class="text-red">{{message}}</h4>
+                            {% endfor %}    
+                            {% endif %}
+                        </div>
                         {% csrf_token %}
                         <div class="form-login">
                             <label class="text-dark">Username</label>

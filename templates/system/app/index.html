@@ -37,10 +37,27 @@
             transition: opacity 0.5s ease;
         }
 
+
+        .logo {
+            width: 550px !important;
+        }
+
+        .logo img {
+            width: 100%;
+        }
+
         .preloader.hide {
             opacity: 0;
             visibility: hidden;
         }
+
+        .preloader-img  img{
+            width: 450px;
+            height: 190px;
+        }
+
+      
+        
 </style>
 <script>
     function getCookie(name) {
@@ -96,7 +113,7 @@ const csrftoken = getCookie('csrftoken');
         <div class="preloader-inner position-relative">
             <div class="preloader-circle"></div>
             <div class="preloader-img pere-text">
-                <img src="{% static 'home/assets/img/logo/loder.jpg' %}" alt="">
+                <h4>Please wait...</h4>
             </div>
         </div>
     </div>
