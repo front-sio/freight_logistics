@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-04klr#d4c^^_)tvl5-7mz3h=mtw$&(=$egr9f2!2#gv6r(ibya
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'sifongo.up.railway.app', 'www.sifongo.co.tz']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'sifongo.up.railway.app', "sifongo.co.tz", '35.214.184.4', 'www.sifongo.co.tz']
+CSRF_TRUSTED_ORIGINS = ["https://www.sifongo.co.tz", "https://sifongo.up.railway.app", "" "http://127.0.0.1"]
 
 # Application definition
 
