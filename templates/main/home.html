@@ -465,7 +465,9 @@
         <div class="services-grid">
             {% for service in services %}
             <div class="service-item">
+                {% if service.image %}
                 <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid">
+                {% endif %}
                 <h4>{{ service.title }}</h4>
                 <p>{{ service.description|truncatewords:20 }}</p>
                 <a href="{% url 'service_detail' service.id %}" class="btn btn-primary read-more-btn">Read More</a>
