@@ -401,7 +401,9 @@
     <div class="carousel-inner">
         {% for item in carousel_items %}
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            {% if item.image %}
             <img src="{{ item.image.url }}" class="d-block w-100" alt="{{ item.title }}">
+            {% endif %}
             <div class="carousel-caption d-none d-md-block">
                 <h5>{{ item.title }}</h5>
                 <p>{{ item.description }}</p>
@@ -466,7 +468,7 @@
             {% for service in services %}
             <div class="service-item">
                 {% if service.image %}
-                <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid">
+                    <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid">
                 {% endif %}
                 <h4>{{ service.title }}</h4>
                 <p>{{ service.description|truncatewords:20 }}</p>
@@ -525,7 +527,7 @@
                     <p></p>
                     <ul class="contact-details list-unstyled">
                         <li><i class="fas fa-phone"></i> +255753667765</li>
-                        <!-- <li><i class="fas fa-phone"></i> +988678836866</li> -->
+                        <!-- <li><i class="fas fa-phone"></i> +255753667765</li> -->
                         <li><i class="fas fa-envelope"></i> info@sifongo.co.tz</li>
                         <li><i class="fas fa-map-marker-alt"></i> </li>
                     </ul>
