@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Sifongo freight & clearing- {% block title %}{% endblock %}</title>
+    <title>Sifongo freight & clearing - {% block title %}{% endblock %}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -30,23 +30,33 @@
 
     <!-- Template Stylesheet -->
     <link href="{% static 'web_app/css/style.css' %}" rel="stylesheet">
-    <!-- extra css -->
-     <style>
-         .nav-link.active {
-            font-weight: bold;
-            color: #fff !important; /* Adjust as needed */
-            background-color: rgb(0, 123, 255); /* Optional: Highlight background */
+    
+    <!-- Extra CSS -->
+    <style>
+        .nav-link {
+
+            font-weight: normal; /* Default font weight for inactive links */
+            color: #fff !important; /* Default color for inactive links */
+            transition: background-color 0.3s; /* Smooth background transition */
+        }
+
+        .nav-link.active {
+            position: relative;
+            font-weight: bold; /* Bold font for active link */
+            color: #000 !important; /* Active link color */
+            background-color: #fff; /* Highlight background */
             padding-left: 10px !important;
             padding-right: 10px !important;
             border: none !important;
         }
 
         .navbar-brand img {
-            width: 150px; /* Set your desired width */
+            width: 400px; /* Set your desired width */
             height: auto; /* Maintain aspect ratio */
             max-height: 60px; /* Set a maximum height if needed */
         }
-     </style>
+    </style>
+    
     {% block extra_css %}{% endblock %}
 </head>
 
@@ -59,25 +69,20 @@
     </div>
     <!-- Spinner End -->
 
-
     <!-- Navbar Start -->
     {% include 'main/partials/navbar.html' %}
     <!-- Navbar End -->
 
-
     <!-- Main Content Start-->
-     {% block content %} {% endblock content %}
-     <!-- Main Content End -->
-
+    {% block content %} {% endblock content %}
+    <!-- Main Content End -->
 
     <!-- Footer Start -->
     {% include 'main/partials/footer.html' %}
     <!-- Footer End -->
 
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -91,9 +96,10 @@
     <!-- Template Javascript -->
     <script src="{% static 'web_app/js/main.js' %}"></script>
 
-    <!-- extra js start-->
+    <!-- Extra JS Start -->
     {% block extra_js %}{% endblock %}
-    <!-- extra js end -->
+    <!-- Extra JS End -->
+    
     <script>
         // Get all nav links
         const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
@@ -109,6 +115,8 @@
             // Check if link href matches current path (consider leading slashes)
             if (linkPath === currentPath || (linkPath === '/' && currentPath === '')) {
                 link.classList.add('active'); // Add active class
+            } else {
+                link.classList.remove('active'); // Remove active class for inactive links
             }
         });
     </script>
