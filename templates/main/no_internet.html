@@ -1,0 +1,16 @@
+{% extends 'main/web_app.html' %}
+
+{% block title %}No Internet | Sifongo Freight and Logistics{% endblock %}
+
+{% block content %}
+<!-- No Internet Connection Start -->
+<div class="container-fluid bg-light vh-100 d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <i class="fa fa-wifi fa-5x text-primary mb-4"></i>
+        <h1 class="mb-3">No Internet Connection</h1>
+        <p class="mb-4">It seems you're not connected to the internet. Please check your connection and try again.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary py-3 px-5">Retry</a>
+    </div>
+</div>
+<!-- No Internet Connection End -->
+{% endblock %}

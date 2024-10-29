@@ -1,162 +1,214 @@
-{% extends 'main/base.html' %}
+{% extends 'main/web_app.html' %}
 
 {% block title %}About Us | Freight and Logistics{% endblock %}
 
-{% block extra_css %}
-<style>
-    /* Global Styles */
-    body {
-        font-family: 'Roboto', sans-serif;
-        overflow-x: hidden;
-    }
-
-    /* Banner Styles */
-    .page-banner {
-        background-image: url('{{ banner.image.url }}');
-        background-size: cover;
-        background-position: center;
-        padding: 100px 0;
-        text-align: center;
-        color: white;
-        position: relative;
-        animation: fadeIn 1.5s ease-in-out;
-    }
-
-    .page-banner h1 {
-        font-size: 3rem;
-        font-weight: bold;
-        margin: 0;
-        animation: slideInFromTop 1s ease-in-out;
-    }
-
-    /* About Section */
-    .about-section {
-        padding: 60px 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .about-section h2 {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 30px;
-        opacity: 0;
-        transform: translateY(-50px);
-        transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    }
-
-    .about-section .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    }
-
-    .about-section .content-wrapper img {
-        width: 100%;
-        max-width: 500px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-    }
-
-    .about-section .content-wrapper p {
-        margin-bottom: 20px;
-        font-size: 1.2rem;
-        color: #555;
-        line-height: 1.6;
-    }
-
-    /* Responsive Layout */
-    @media (min-width: 768px) {
-        .about-section .content-wrapper {
-            flex-direction: row;
-            align-items: flex-start;
-            text-align: left;
-        }
-
-        .about-section .content-wrapper img {
-            margin-right: 30px;
-            margin-bottom: 0;
-        }
-
-        .about-section .content-wrapper p {
-            max-width: 600px;
-        }
-    }
-
-    /* Triggered Animations */
-    .in-view {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-    }
-</style>
-{% endblock %}
-
 {% block content %}
-
-{% if banner %}
-<!-- Page Banner -->
-<div class="page-banner">
-    <h1>{{ banner.title }}</h1>
-    {% if banner.description %}
-    <p>{{ banner.description }}</p>
-    {% endif %}
-</div>
-{% endif %}
-
-<!-- About Section -->
-<div class="about-section">
-    <h2>About Us</h2>
-    <div class="content-wrapper">
-        {% if about.image %}
-        <img src="{{ about.image.url }}" alt="About Us">
-        {% endif %}
-        <p>{{ about.content }}</p>
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+            </ol>
+        </nav>
     </div>
 </div>
-{% endblock %}
+<!-- Page Header End -->
 
-{% block extra_js %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const aboutTitle = document.querySelector('.about-section h2');
-        const aboutContentWrapper = document.querySelector('.about-section .content-wrapper');
 
-        function revealElements() {
-            const elements = [aboutTitle, aboutContentWrapper];
-            elements.forEach((el, index) => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && !el.classList.contains('in-view')) {
-                    setTimeout(() => {
-                        el.classList.add('in-view');
-                    }, index * 150); // Staggered effect with delay between each element
-                }
-            });
-        }
+<!-- About Start -->
+<div class="container-fluid overflow-hidden py-5 px-lg-0">
+    <div class="container about py-5 px-lg-0">
+        <div class="row g-5 mx-lg-0">
+            <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute img-fluid w-100 h-100" src="img/about.jpg" style="object-fit: cover;" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
+                <h6 class="text-secondary text-uppercase mb-3">About Us</h6>
+                <h1 class="mb-5">Delivering Excellence in Logistics and Transport Solutions</h1>
+                <p class="mb-5">Founded on principles of reliability and integrity, we are your trusted partner in logistics and transport. From global shipping to efficient supply chain solutions, our team is committed to streamlining your business operations. With cutting-edge technology, a vast logistics network, and round-the-clock support, we ensure every shipment arrives safely, securely, and on time. Our clients choose us because they value a partner who prioritizes seamless delivery and unwavering professionalism in every step of the journey.</p>
+                <div class="row g-4 mb-5">
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                        <i class="fa fa-globe fa-3x text-primary mb-3"></i>
+                        <h5>Global Coverage</h5>
+                        <p class="m-0">Our services span the globe, offering unmatched reach and reliability for clients everywhere.</p>
+                    </div>
+                    <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+                        <i class="fa fa-shipping-fast fa-3x text-primary mb-3"></i>
+                        <h5>On-Time Delivery</h5>
+                        <p class="m-0">Our efficient logistics team ensures that your shipments arrive right on schedule, every time.</p>
+                    </div>
+                </div>
+                <a href="" class="btn btn-primary py-3 px-5">Explore More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
 
-        function hideElements() {
-            const elements = [aboutTitle, aboutContentWrapper];
-            elements.forEach((el) => {
-                const rect = el.getBoundingClientRect();
-                if (rect.bottom > window.innerHeight || rect.top < 0) {
-                    el.classList.remove('in-view');
-                }
-            });
-        }
 
-        window.addEventListener('scroll', () => {
-            revealElements();
-            hideElements();
-        });
+<!-- Fact Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase mb-3">Some Facts</h6>
+                <h1 class="mb-5">Your Premier Choice for Comprehensive Shipment Management</h1>
+                <p class="mb-5">With a track record of success, we have supported thousands of businesses in streamlining their logistics processes. Whether small packages or large cargo, our solutions provide security and transparency at every step.</p>
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-headphones fa-2x flex-shrink-0 bg-primary p-3 text-white"></i>
+                    <div class="ps-4">
+                        <h6>Have a question? We’re here to help!</h6>
+                        <h3 class="text-primary m-0">+255 753 667 765</h3>  <!-- Updated Mobile Number -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-4 align-items-center">
+                    <div class="col-sm-6">
+                        <div class="bg-primary p-4 mb-4 wow fadeIn" data-wow-delay="0.3s">
+                            <i class="fa fa-users fa-2x text-white mb-3"></i>
+                            <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                            <p class="text-white mb-0">Happy Clients</p>
+                        </div>
+                        <div class="bg-secondary p-4 wow fadeIn" data-wow-delay="0.5s">
+                            <i class="fa fa-ship fa-2x text-white mb-3"></i>
+                            <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                            <p class="text-white mb-0">Completed Shipments</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="bg-success p-4 wow fadeIn" data-wow-delay="0.7s">
+                            <i class="fa fa-star fa-2x text-white mb-3"></i>
+                            <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                            <p class="text-white mb-0">Customer Reviews</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fact End -->
 
-        revealElements(); // Initial check on load
-    });
-</script>
+
+
+<!-- Feature Start -->
+<div class="container-fluid overflow-hidden py-5 px-lg-0">
+    <div class="container feature py-5 px-lg-0">
+        <div class="row g-5 mx-lg-0">
+            <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase mb-3">Our Features</h6>
+                <h1 class="mb-5">Your Trusted Partner in Logistics Since 1990</h1>
+                <div class="d-flex mb-5 wow fadeInUp" data-wow-delay="0.3s">
+                    <i class="fa fa-globe text-primary fa-3x flex-shrink-0"></i>
+                    <div class="ms-4">
+                        <h5>Worldwide Service</h5>
+                        <p class="mb-0">We bring efficiency and reliability to international logistics with expert support worldwide.</p>
+                    </div>
+                </div>
+                <div class="d-flex mb-5 wow fadeIn" data-wow-delay="0.5s">
+                    <i class="fa fa-shipping-fast text-primary fa-3x flex-shrink-0"></i>
+                    <div class="ms-4">
+                        <h5>On-Time Delivery</h5>
+                        <p class="mb-0">Guaranteed timely delivery, backed by robust logistics planning and a dedicated team.</p>
+                    </div>
+                </div>
+                <div class="d-flex mb-0 wow fadeInUp" data-wow-delay="0.7s">
+                    <i class="fa fa-headphones text-primary fa-3x flex-shrink-0"></i>
+                    <div class="ms-4">
+                        <h5>24/7 Support</h5>
+                        <p class="mb-0">Our dedicated support team is available around the clock for any questions or issues.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Feature End -->
+
+
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="text-secondary text-uppercase">Our Team</h6>
+            <h1 class="mb-5">Meet Our Expert Team</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img-fluid" src="img/team-1.jpg" alt="">
+                    </div>
+                    <h5 class="mb-0">Full Name</h5>
+                    <p>Designation</p>
+                    <div class="btn-slide mt-1">
+                        <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img-fluid" src="img/team-2.jpg" alt="">
+                    </div>
+                    <h5 class="mb-0">Full Name</h5>
+                    <p>Designation</p>
+                    <div class="btn-slide mt-1">
+                        <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img-fluid" src="img/team-3.jpg" alt="">
+                    </div>
+                    <h5 class="mb-0">Full Name</h5>
+                    <p>Designation</p>
+                    <div class="btn-slide mt-1">
+                        <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img-fluid" src="img/team-4.jpg" alt="">
+                    </div>
+                    <h5 class="mb-0">Full Name</h5>
+                    <p>Designation</p>
+                    <div class="btn-slide mt-1">
+                        <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+
 {% endblock %}

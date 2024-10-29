@@ -1,0 +1,35 @@
+<!-- main/templates/main/partials/navbar.html -->
+{% load static %}
+{% load custom_filters %}  <!-- Load the custom_filters tag library -->
+
+<nav class="navbar navbar-expand-lg bg-primary navbar-light shadow border-top border-5 border-black sticky-top p-0">
+    <a href="{% url 'home' %}" class="navbar-brand bg-light d-flex align-items-center px-4 px-lg-5">
+        <img src="/static/assets/img/sifex/logo2.png" alt="" style="width: 300px; height: auto; max-height: 100px;">
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="{% url 'home' %}" class="nav-item nav-link {% if current_page == 'home' %}active{% endif %}">Home</a>
+            <a href="{% url 'about' %}" class="nav-item nav-link {% if current_page == 'about' or current_page == 'about_detail' %}active{% endif %}">About</a>
+            <a href="{% url 'services' %}" class="nav-item nav-link {% if request.path|startswith:"/services" %}active{% endif %}">Services</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                <div class="dropdown-menu fade-up m-0">
+                    <!-- Uncomment and use similar logic if needed -->
+                    <!-- <a href="" class="dropdown-item {% if current_page == 'feature' %}active{% endif %}">Features</a> -->
+                    <!-- <a href="" class="dropdown-item {% if current_page == 'quote' %}active{% endif %}">Free Quote</a> -->
+                    <!-- <a href="" class="dropdown-item {% if current_page == 'team' %}active{% endif %}">Our Team</a> -->
+                    <!-- <a href="" class="dropdown-item {% if current_page == 'testimonial' %}active{% endif %}">Testimonial</a> -->
+                    <!-- <a href="" class="dropdown-item {% if current_page == '404' %}active{% endif %}">404 Page</a> -->
+                </div>
+            </div>
+            <a href="{% url 'contact' %}" class="nav-item nav-link {% if current_page == 'contact' %}active{% endif %}">Contact</a>
+        </div>
+        <h4 class="m-0 pe-lg-5 d-none d-lg-block">
+            <i class="fa fa-headphones text-primary me-3"></i>
+            <a href="tel:+255753667765" class="text-dark">+255 753-667-765</a>
+        </h4>
+    </div>
+</nav>

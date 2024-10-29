@@ -1,21 +1,48 @@
 from django.contrib import admin
-from .models import CarouselItem, Service, About, Contact, TeamMember, Banner
+from .models import (
+    CarouselItem, Service, About, Contact, TeamMember, 
+    Banner, NewsletterSubscription, QuoteRequest
+)
 
-admin.site.register(CarouselItem)
-admin.site.register(Service)
-admin.site.register(About)
-admin.site.register(Contact)
-admin.site.register(TeamMember)
+@admin.register(CarouselItem)
+class CarouselItemAdmin(admin.ModelAdmin):
+    list_display = ('title', 'active')
+    list_filter = ('active',)
+    search_fields = ('title',)
 
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    search_fields = ('title',)
 
+@admin.register(About)
+class AboutAdmin(admin.ModelAdmin):
+    list_display = ('id',)
+    search_fields = ('content',)
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('address', 'phone', 'email')
+    search_fields = ('address', 'phone', 'email')
+
+@admin.register(TeamMember)
+class TeamMemberAdmin(admin.ModelAdmin):
+    list_display = ('name', 'position')
+    search_fields = ('name', 'position')
 
 @admin.register(Banner)
 class BannerAdmin(admin.ModelAdmin):
     list_display = ('page_name', 'title')
-    fields = ('page_name', 'image', 'title', 'description')
+    search_fields = ('page_name', 'title')
 
-    def has_add_permission(self, request):
-        # Limit the number of banners to one per page type
-        if self.model.objects.count() >= len(self.model.PAGE_CHOICES):
-            return False
-        return super().has_add_permission(request)
+@admin.register(NewsletterSubscription)
+class NewsletterSubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('email', 'subscribed_at')
+    search_fields = ('email',)
+    readonly_fields = ('subscribed_at',)
+
+@admin.register(QuoteRequest)
+class QuoteRequestAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'service', 'phone', 'requested_at')
+    search_fields = ('name', 'email', 'service', 'phone')
+    readonly_fields = ('requested_at',)

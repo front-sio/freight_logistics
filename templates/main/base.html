@@ -6,274 +6,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Sifongo Freight & Logistic{% endblock %}</title>
     
-    <!-- Global Styles -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Global custom styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth; /* Smooth scrolling for the whole page */
-        }
-
-        /* Top bar styles */
-        .top-bar {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            transition: transform 0.3s ease-in-out; /* Smooth transition for the top bar */
-            position: fixed;
-            width: 100%;
-            z-index: 1030;
-            transform: translateY(0); /* Default position of the top bar */
-        }
-
-        .top-bar.hidden {
-            transform: translateY(-100%); /* Hide the top bar */
-        }
-
-        .top-bar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-bar .contact-info {
-            font-size: 14px;
-        }
-
-        .top-bar .social-icons a {
-            color: white;
-            margin-left: 10px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-
-        /* Navbar styles */
-        .navbar {
-            transition: top 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition for the navbar */
-            position: fixed;
-            width: 100%;
-            top: 40px; /* Initially below the top bar */
-            z-index: 1020; /* Ensure the navbar stays on top */
-            background-color: rgb(255, 253, 253);
-            height: 11% !important;
-        }
-
-        .navbar.sticky {
-            top: 0; /* Stick the navbar to the top */
-            transform: translateY(0);
-        }
-
-        .navbar-released {
-            top: 40px; /* Align with top bar when released */
-            transform: translateY(0);
-        }
-
-        .navbar-nav .nav-link {
-            font-size: 22px;
-            text-transform: uppercase;
-            color: #333 !important;
-            padding: 10px 15px;
-            position: relative; /* For positioning the bottom indicator */
-            transition: color 0.3s ease-in-out; /* Smooth transition for text color */
-            overflow: hidden; /* Hide overflowing content */
-        }
-
-        /* Indicator styles */
-        .navbar-nav .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            width: 0;
-            height: 3px;
-            background-color: red; /* Bright yellow indicator */
-            transition: all 0.3s ease-in-out; /* Smooth transition */
-            transform: translateX(-50%);
-        }
-
-        .navbar-nav .nav-link.active::after {
-            width: 100%; /* Extend the indicator across the entire link */
-        }
-
-        .navbar-nav .nav-link:hover::after {
-            width: 100%; /* Extend the indicator on hover */
-        }
-
-        /* Spinner Styles */
-        .spinner-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px; /* Adjust as needed */
-            margin-bottom: 20px;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out; /* Smooth transition for hiding the spinner */
-        }
-
-        .spinner-container.hidden {
-            opacity: 0; /* Fade out the spinner */
-        }
-
-        .spinner-border.text-danger {
-            color: #ff0000; /* Red spinner */
-        }
-
-        /* Global transitions for content */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Content padding to account for the fixed navbar and top bar */
-        .content-wrapper {
-            padding-top: 105px; /* Adjust based on navbar and top bar height */
-        }
-
-        .logo {
-            width: 140px;
-        }
-    </style>
-
-    <!-- Placeholder for additional styles -->
-    {% block extra_css %}
-    {% endblock %}
 </head>
-<body>
+<body class="bg-gray-100">
 
     <!-- Top Bar -->
-    <div id="topBar" class="top-bar">
-        <div class="container">
-            <div class="contact-info">
+    <div id="topBar" class="bg-gray-800 text-white py-2 fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-sm">
                 <span><i class="fas fa-envelope"></i> info@sifongo.co.tz | <i class="fas fa-phone"></i> +255753667765</span>
             </div>
-            <div class="social-icons">
-                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <div class="space-x-3">
+                <a href="https://www.facebook.com" target="_blank" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank" class="text-white"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com" target="_blank" class="text-white"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
 
     <!-- Navbar -->
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark navbar-released">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><img class="logo" src="{% static 'system/assets/img/sifex/logo.png' %}" alt=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto"> <!-- Added ms-auto to push the menu items to the right -->
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'services' %}active{% endif %}" href="{% url 'services' %}">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="{% url 'console' %}">Login</a>
-                    </li>
-                </ul>
+    <nav id="navbar" class="bg-white shadow-md w-full top-0 z-40 transition-transform duration-300 fixed">
+        <div class="container mx-auto flex justify-between items-center py-3">
+            <a class="navbar-brand" href="{% url 'home' %}"><img class="w-36" src="{% static 'system/assets/img/sifex/logo.png' %}" alt="Logo"></a>
+            <div class="flex md:hidden space-x-4">
+                <button id="menu-button" class="text-gray-700 hover:text-red-500 focus:outline-none">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+            </div>
+            <div class="hidden md:flex md:space-x-4">
+                <a class="text-lg font-semibold text-gray-700 hover:text-red-500 {% if request.resolver_match.url_name == 'home' %}text-red-500{% endif %}" href="{% url 'home' %}">Home</a>
+                <a class="text-lg font-semibold text-gray-700 hover:text-red-500 {% if request.resolver_match.url_name == 'services' %}text-red-500{% endif %}" href="{% url 'services' %}">Services</a>
+                <a class="text-lg font-semibold text-gray-700 hover:text-red-500 {% if request.resolver_match.url_name == 'about' %}text-red-500{% endif %}" href="{% url 'about' %}">About</a>
+                <a class="text-lg font-semibold text-gray-700 hover:text-red-500 {% if request.resolver_match.url_name == 'contact' %}text-red-500{% endif %}" href="{% url 'contact' %}">Contact</a>
+                <a class="text-lg font-semibold text-gray-700 hover:text-red-500" target="_blank" href="{% url 'console' %}">Login</a>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900 text-white shadow-lg transform -translate-x-full transition-transform duration-300">
+        <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-white">
+                <i class="fas fa-times fa-lg"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center">
+            <a class="text-lg font-semibold hover:text-red-500" href="{% url 'home' %}">Home</a>
+            <a class="text-lg font-semibold hover:text-red-500" href="{% url 'services' %}">Services</a>
+            <a class="text-lg font-semibold hover:text-red-500" href="{% url 'about' %}">About</a>
+            <a class="text-lg font-semibold hover:text-red-500" href="{% url 'contact' %}">Contact</a>
+            <a class="text-lg font-semibold hover:text-red-500" target="_blank" href="{% url 'console' %}">Login</a>
+        </div>
+    </div>
+
     <!-- Content Wrapper -->
-    <div class="content-wrapper">
+    <div class="pt-32">
         <!-- Spinner loader -->
-        <div id="spinner-container" class="spinner-container">
+        <div id="spinner-container" class="flex justify-center items-center h-64 opacity-1 transition-opacity duration-500 ease-in-out">
             <div class="spinner-border text-danger" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
 
-        <div id="content" class="mt-4 fade-in" style="display: none;">
+        <div id="content" class="mt-4 fade-in hidden">
             {% block content %}
             {% endblock %}
         </div>
     </div>
 
-
-   <!-- Footer -->
-    <footer class="bg-dark text-white pt-5 pb-4">
-        <div class="container text-center text-md-left">
-            <div class="row text-center text-md-left">
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-5 pb-4 mt-10">
+        <div class="container mx-auto text-center text-md-left">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <!-- Company Info -->
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Sifongo Freight & Logistic</h5>
+                <div class="mt-3">
+                    <h5 class="text-lg font-bold text-yellow-400">Sifongo Freight & Logistic</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, magnam?</p>
                 </div>
 
                 <!-- Quick Links -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Quick Links</h5>
-                    <p><a href="{% url 'home' %}" class="text-white" style="text-decoration: none;">Home</a></p>
-                    <p><a href="{% url 'services' %}" class="text-white" style="text-decoration: none;">Services</a></p>
-                    <p><a href="{% url 'about' %}" class="text-white" style="text-decoration: none;">About</a></p>
-                    <p><a href="{% url 'contact' %}" class="text-white" style="text-decoration: none;">Contact</a></p>
+                <div class="mt-3">
+                    <h5 class="text-lg font-bold text-yellow-400">Quick Links</h5>
+                    <p><a href="{% url 'home' %}" class="text-white hover:underline">Home</a></p>
+                    <p><a href="{% url 'services' %}" class="text-white hover:underline">Services</a></p>
+                    <p><a href="{% url 'about' %}" class="text-white hover:underline">About</a></p>
+                    <p><a href="{% url 'contact' %}" class="text-white hover:underline">Contact</a></p>
                 </div>
 
                 <!-- Contact Info -->
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
-                    <p><i class="fas fa-home mr-3"></i> Dar es Salaam, Tanzania</p>
-                    <p><i class="fas fa-envelope mr-3"></i> info@sifongo.co.tz</p>
-                    <p><i class="fas fa-phone mr-3"></i> +123 456 7890</p>
-                    <p><i class="fas fa-print mr-3"></i> +123 456 7890</p>
+                <div class="mt-3">
+                    <h5 class="text-lg font-bold text-yellow-400">Contact</h5>
+                    <p><i class="fas fa-home mr-2"></i> Dar es Salaam, Tanzania</p>
+                    <p><i class="fas fa-envelope mr-2"></i> info@sifongo.co.tz</p>
+                    <p><i class="fas fa-phone mr-2"></i> +123 456 7890</p>
+                    <p><i class="fas fa-print mr-2"></i> +123 456 7890</p>
                 </div>
 
                 <!-- Social Media -->
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Follow Us</h5>
-                    <a href="https://www.facebook.com" target="_blank" class="text-white me-4" style="font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.twitter.com" target="_blank" class="text-white me-4" style="font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank" class="text-white me-4" style="font-size: 1.5rem;"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.instagram.com" target="_blank" class="text-white me-4" style="font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                <div class="mt-3">
+                    <h5 class="text-lg font-bold text-yellow-400">Follow Us</h5>
+                    <a href="https://www.facebook.com" target="_blank" class="text-white mr-4 text-2xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.twitter.com" target="_blank" class="text-white mr-4 text-2xl"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank" class="text-white mr-4 text-2xl"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="text-white mr-4 text-2xl"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
 
             <!-- Horizontal Line -->
-            <hr class="mb-4">
+            <hr class="my-4">
 
             <!-- Copyright -->
-            <div class="row align-items-center">
-                <div class="col-md-7 col-lg-8">
-                    <p class="text-white">© 2024 Sifongo Freight & Logistic. All Rights Reserved.</p>
+            <div class="flex justify-between items-center">
+                <div>
+                    <p>© 2024 Sifongo Freight & Logistic. All Rights Reserved.</p>
                 </div>
-                <!-- <div class="col-md-5 col-lg-4">
-                    <p class="text-white text-right">Designed by <a class="nav-link" target="_blank" href="http://www.leotech.co.tz">leotech company limited</a> </p>
-                </div> -->
             </div>
         </div>
     </footer>
 
-
+    <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Font Awesome for social media icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
-    <!-- Smooth navbar transition based on scroll direction and global content animation -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             let lastScrollTop = 0;
             const navbar = document.getElementById('navbar');
             const topBar = document.getElementById('topBar');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = document.getElementById('menu-button');
+            const closeMenuButton = document.getElementById('close-menu');
             const fadeIns = document.querySelectorAll('.fade-in');
             const spinnerContainer = document.getElementById('spinner-container');
             const content = document.getElementById('content');
@@ -282,20 +148,17 @@
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
                 if (scrollTop > lastScrollTop) {
-                    // Scrolling down - stick navbar and hide top bar
+                    // Scrolling down
+                    navbar.classList.add('hidden');  // Hide navbar when scrolling down
                     topBar.classList.add('hidden');
-                    navbar.classList.add('sticky');
-                    navbar.classList.remove('navbar-released');
-                } else if (scrollTop < lastScrollTop) {
-                    // Scrolling up - show top bar and release navbar
+                } else {
+                    // Scrolling up
+                    navbar.classList.remove('hidden');  // Show navbar when scrolling up
                     topBar.classList.remove('hidden');
-                    navbar.classList.remove('sticky');
-                    navbar.classList.add('navbar-released');
                 }
 
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 
-                // Trigger fade-in animations when content is in view
                 fadeIns.forEach(function (fadeIn) {
                     if (fadeIn.getBoundingClientRect().top < window.innerHeight) {
                         fadeIn.classList.add('visible');
@@ -303,14 +166,24 @@
                 });
             });
 
+            // Show mobile menu
+            menuButton.addEventListener('click', function () {
+                mobileMenu.classList.remove('-translate-x-full');
+            });
+
+            // Close mobile menu
+            closeMenuButton.addEventListener('click', function () {
+                mobileMenu.classList.add('-translate-x-full');
+            });
+
             // Hide spinner and show content after page loads
             window.onload = function() {
-                spinnerContainer.classList.add('hidden'); // Fade out the spinner
+                spinnerContainer.classList.add('hidden'); 
                 setTimeout(() => {
-                    spinnerContainer.style.display = 'none'; // Completely hide spinner after transition
-                    content.style.display = 'block'; // Show content
-                    content.classList.add('visible'); // Trigger fade-in
-                }, 500); // Match the transition duration
+                    spinnerContainer.style.display = 'none'; 
+                    content.style.display = 'block'; 
+                    content.classList.add('visible'); 
+                }, 500);
             };
         });
     </script>

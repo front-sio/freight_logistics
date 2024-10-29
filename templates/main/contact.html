@@ -1,20 +1,111 @@
-{% extends 'main/base.html' %}
+{% extends 'main/web_app.html' %}
 
-{% block title %}Contact{% endblock %}
-
-{% block extra_css %}
-<style>
-    .contact-page {
-        background-color: #f9f9f9;
-        padding: 20px;
-        border-radius: 8px;
-    }
-</style>
-{% endblock %}
+{% block title %}Contact Us{% endblock %}
 
 {% block content %}
-<div class="contact-page">
-    <h1>Contact Us</h1>
-    <p>Get in touch with us for any inquiries or support.</p>
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5">
+    <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Contact Us</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-white" href="/">Home</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
+            </ol>
+        </nav>
+    </div>
 </div>
+<!-- Page Header End -->
+
+<!-- Contact Info Start -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-4 text-center">
+            <i class="bi bi-telephone-fill display-3 text-primary mb-3"></i>
+            <h5>Phone</h5>
+            <p>+255 753-667-765</p>
+        </div>
+        <div class="col-lg-4 text-center">
+            <i class="bi bi-envelope-fill display-3 text-primary mb-3"></i>
+            <h5>Email</h5>
+            <p>info@sifongo.co.tz</p>
+        </div>
+        <div class="col-lg-4 text-center">
+            <i class="bi bi-geo-alt-fill display-3 text-primary mb-3"></i>
+            <h5>Location</h5>
+            <p></p>
+        </div>
+    </div>
+</div>
+<!-- Contact Info End -->
+
+<!-- Contact Start -->
+<div class="container-fluid overflow-hidden py-5">
+    <div class="container contact-page py-5">
+        <div class="row g-5">
+            <!-- Contact Form Start -->
+            <div class="col-md-6 contact-form wow fadeIn" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase">Get In Touch</h6>
+                <h1 class="mb-4">We're Here to Help</h1>
+                <p class="mb-4">If you have any questions, feel free to reach out to us using the contact form below. Our team is here to help with any inquiries.</p>
+                <div class="bg-light p-4">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                    <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                                    <label for="subject">Subject</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px" required></textarea>
+                                    <label for="message">Message</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Contact Form End -->
+
+            <!-- Map Start -->
+            <div class="col-md-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s">
+                <div class="position-relative h-100">
+                    <iframe  class="position-absolute w-100 h-100" style="object-fit: cover;"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15844.95078480187!2d39.208141!3d-6.8620917!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c493288236adb%3A0x8a0d6860b0475fb5!2sSIFONGO%20FREIGHT%20%26%20LOGISTICS!5e0!3m2!1sen!2stz!4v1730204574712!5m2!1sen!2stz" 
+                     style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <!-- Map End -->
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+<!-- Call to Action Start -->
+<div class="container-fluid py-5 bg-primary text-white text-center">
+    <div class="container">
+        <h2 class="mb-4">Need Immediate Assistance?</h2>
+        <p class="mb-4">Our customer support team is available 24/7. Feel free to reach us at any time.</p>
+        <a href="tel:+15551234567" class="btn btn-light text-primary py-3 px-5">Call Us Now</a>
+    </div>
+</div>
+<!-- Call to Action End -->
+
 {% endblock %}
