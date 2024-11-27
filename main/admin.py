@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     CarouselItem, Service, About, Contact, TeamMember, 
-    Banner, NewsletterSubscription, QuoteRequest
+    Banner, NewsletterSubscription, QuoteRequest, AWB, Cost
 )
 
 @admin.register(CarouselItem)
@@ -46,3 +46,15 @@ class QuoteRequestAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'service', 'phone', 'requested_at')
     search_fields = ('name', 'email', 'service', 'phone')
     readonly_fields = ('requested_at',)
+
+
+@admin.register(AWB)
+class AWBAdmin(admin.ModelAdmin):
+    list_display = ['id', 'awb_number', 'created_at']
+    search_fields = ['awb_number']
+
+
+@admin.register(Cost)
+class CostAdmin(admin.ModelAdmin):
+    list_display = ['id', 'awb', 'name', 'amount']
+    search_fields = ['name', 'awb__awb_number']

@@ -72,3 +72,29 @@ class QuoteRequest(models.Model):
 
     def __str__(self):
         return f"Quote Request from {self.name} for {self.service}"
+
+
+
+class AWB(models.Model):
+    awb_number = models.CharField(max_length=100, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.awb_number
+
+    def calculate_revenue(self):
+        # Placeholder logic; replace with actual revenue calculation
+        return sum(some_related_revenue.amount for some_related_revenue in self.revenues.all())
+
+    def calculate_profit(self):
+        revenue = self.calculate_revenue()
+        total_cost = self.calculate_total_cost()
+        return revenue - total_cost
+
+
+class Cost(models.Model):
+    awb = models.ForeignKey('AWB', on_delete=models.CASCADE, null=True, related_name='awbs')
+    name = models.CharField(max_length=200, null=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    remarks = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)

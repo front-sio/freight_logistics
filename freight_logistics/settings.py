@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-04klr#d4c^^_)tvl5-7mz3h=mtw$&(=$egr9f2!2#gv6r(ibya
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'sifongo.up.railway.app', "sifongo.co.tz", '35.214.184.4', 'www.sifongo.co.tz']
-CSRF_TRUSTED_ORIGINS = ["https://www.sifongo.co.tz", "https://sifongo.up.railway.app", "" "http://127.0.0.1"]
+ALLOWED_HOSTS = ['127.0.0.1', 'sifongo.up.railway.app', "sifongo.co.tz", '35.214.184.4', 'www.sifongo.co.tz', 'localhost']
+CSRF_TRUSTED_ORIGINS = ["https://www.sifongo.co.tz", "https://sifongo.up.railway.app", "" "http://127.0.0.1", 'http://localhost:8000']
 
 # Application definition
 
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "rest_framework",
+    "rest_framework_simplejwt",
     'crispy_forms',
     'main',
     'accounts',
@@ -153,4 +155,15 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'your-email@gmail.com'
 EMAIL_HOST_PASSWORD = 'your-email-password'
+
+
+
+from datetime import timedelta
+
+NINJA_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
+
 
