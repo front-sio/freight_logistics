@@ -49,6 +49,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'freight_logistics.redirect_to_www.RedirectToWWWMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -166,4 +167,7 @@ NINJA_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
+
+
+SECURE_SSL_REDIRECT = False
 
